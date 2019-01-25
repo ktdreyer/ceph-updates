@@ -1,0 +1,30 @@
+{%- if build -%}
+{%-   set tooltip = "tagged for " ~ build.tagged_duration -%}
+{%-   if build.promote_state == 'waiting' -%}
+{%-     set tooltip = "can promote in " ~ build.wait_remaining -%}
+{%-   endif -%}
+  <td data-toggle="tooltip" data-placement="top" title="{{ tooltip }}">
+{%- else -%}
+  <td>
+{%- endif -%}
+  {%- if build -%}
+    <div class="d-flex">
+    {{ build.vr }}
+    {%- if build.promote_state == 'ready' -%}
+        <button type="button" class="btn btn-secondary btn-sm ml-auto">
+        Promote
+        </button>
+    {%- elif build.promote_state == 'waiting' -%}
+        <button
+          type="button" class="btn btn-secondary btn-sm ml-auto"
+          style="pointer-events: none;" type="button"
+          disabled>
+          Promote
+        </button>
+      </span>
+    {%- elif build.promote_state == 'paused' -%}
+    <!-- todo: paused -->
+    {%- endif -%}
+    </div>
+  {%- endif -%}
+</td>

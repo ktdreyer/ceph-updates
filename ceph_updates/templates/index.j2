@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="google" content="notranslate">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS">
+    <script src="/js/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"></script>
+    <script src="/js/bootstrap.bundle.min.js" ></script>
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
+
+    <title>Koji updates</title>
+  </head>
+  <body>
+  <h1>nautilus</h1>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">package</th>
+        <th scope="col">{{ tags.candidate }}</th>
+        <th scope="col">{{ tags.testing }}</th>
+        <th scope="col">{{ tags.release }}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for package in packages %}
+      <tr>
+        <th scope="row">{{ package }}</th>
+        {% set build = builds.candidate[package]|default %}
+        {% include 'buildcell.j2' %}
+        {% set build = builds.testing[package]|default %}
+        {% include 'buildcell.j2' %}
+        {% set build = builds.release[package]|default %}
+        {% include 'buildcell.j2' %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </body>
+</html>
