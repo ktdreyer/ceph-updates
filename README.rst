@@ -13,15 +13,15 @@ Tags in CBS
 
 You can manage builds through three tags:
 
-* ``-candidate``: When CBS completes a build, it immediately tags into
-  ``-candidate``. This means the build is available for promoting to
-  ``-testing`` and ``-release``.
+1) ``-candidate``: When CBS completes a build, it immediately tags into
+   ``-candidate``. This means the build is available for promoting to
+   ``-testing`` and ``-release``.
 
-* ``-testing``: This build is in a `Yum repo
-  <https://buildlogs.centos.org/>`_, ready for limited user testing.
+2) ``-testing``: This build is in a `Yum repo
+   <https://buildlogs.centos.org/>`_, ready for limited user testing.
 
-* ``-release``: This build is ready to be GPG-signed and go out to the CentOS
-  mirror network for all users.
+3) ``-release``: This build is ready to be GPG-signed and go out to the CentOS
+   mirror network for all users.
 
 We want to manage this promotion process with a couple rules:
 (note: not yet implemented in this application):
